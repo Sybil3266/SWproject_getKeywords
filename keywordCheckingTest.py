@@ -4,6 +4,7 @@ from nltk.tokenize import word_tokenize
 from wordcloud import wordcloud
 import matplotlib.pyplot as plt
 
+
 def counter():
     readData = open("C:\\users\\user\Downloads\크롤링Data_돌마갤.txt", 'r', encoding = 'utf8').read()
     okt = Okt()
