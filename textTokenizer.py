@@ -2,20 +2,20 @@ from soynlp.utils import DoublespaceLineCorpus
 import time
 from soynlp.tokenizer import LTokenizer
 
-import re
-import sys
+#import re
+#import sys
 from soynlp.noun import LRNounExtractor_v2
-from gensim.models import Word2Vec
+#from gensim.models import Word2Vec
 
 from soynlp.normalizer import *
 from soynlp.vectorizer import *
 from soykeyword.lasso import LassoKeywordExtractor
 
 start_time = time.time()
-        
-fp = open("C:\\users\\user\Desktop\SWProject\SWproject_getKeywords\CrawlingData_pebble.txt", "r", encoding = "utf-8")
 
-corpus_path = "C:\\users\\user\Desktop\SWProject\SWproject_getKeywords\CrawlingData_pebble.txt"
+fp = open("C:\\Users\sybil\OneDrive\Documents\GitHub\SWproject_getKeywords\hsinvennews.txt", "r", encoding="utf-8")
+
+corpus_path = "C:\\Users\sybil\OneDrive\Documents\GitHub\SWproject_getKeywords\hsinvennews.txt"
 sents = DoublespaceLineCorpus(corpus_path, iter_sent=True)
 
 text = []
@@ -25,15 +25,14 @@ while True:
     text.append(line)
 
 fp.close()
-
 text = str(text)
+'''
 text = only_hangle_number(text)
 text = emoticon_normalize(text, num_repeats = 3)
 text = repeat_normalize(text, num_repeats = 3)
-
+'''
 noun_extractor = LRNounExtractor_v2(verbose=True, extract_compound=True)
 nouns = noun_extractor.train_extract(sents)
-
 nounScore = {}
 dictionary = {}
 index = 0
@@ -44,14 +43,12 @@ for noun in nouns:
     index += 1
 
 del index
-
+#여기서 빼낸 명사랑, 벡터화~키워드 추출에서 사용하는 단어의 수가 다른듯한데
 nounData = list(dictionary.keys())
 
 
 '''
 writefp = open("C:\\users\\user\Desktop\SWProject\SWproject_getKeywords\WordScore_pebble.txt", "w", encoding = "utf-8")
-
-
 writefp.write(str(nounScore))
 writefp.close()
 '''
@@ -71,9 +68,15 @@ vectorizer = BaseVectorizer(
     verbose=True
 )
 
-#sents.iter_sent = False
+sents.iter_sent = False
 #x = vectorizer.fit_transform(sents)
+import tensorflow as tf
 
+
+vectorPath = "./vectorizedHSInvenNews.txt"
+with tf.device('/gpu:0'):
+    vectorizer.fit_to_file(sents, vectorPath)
+    
 #lassobased_extractor = LassoKeywordExtractor(min_tf=1, min_df=1)
 #lassobased_extractor.train(x, nounData) # x: sparse matrix, index2word가 뭐지?
 

@@ -10,12 +10,13 @@ headers = {
 }
 
 start_time = time.time()
-fp = open("C:\\users\\user\Downloads\crawldata_temp.txt", 'w', encoding = 'utf8')
+path = "C:\\Users\sybil\OneDrive\Documents\GitHub\SWproject_getKeywords\hsinvennews.txt"
+fp = open(path, 'w', encoding = 'utf8')
+
 print("File is successly opened!")
 
 def get_links(gall):
     time.sleep(1)
-    print("start crawling %s ...", gall)
     try:
         req = requests.get(gall, headers = headers)
     except requests.exceptions.ConnectionError:
@@ -23,9 +24,9 @@ def get_links(gall):
         req.status_code = "Connection refused"
     html = req.text
     soup = bs(html, 'html.parser')
-    my_titles = soup.find_all('td', {"class" : "bbsSubject"})
+    my_titles = soup.find_all('span', {"class" : "title"})
     data = []
-    
+
     for i in my_titles:
         j = i.find('a')
         
@@ -34,11 +35,7 @@ def get_links(gall):
 
         #title = j.get_text()
         ref = j.get('href')
-        #if ref == 'javascript:;':
-        #    continue
-        #data.append(title)
-        #fp.write(title)
-        #link = 'https://gall.dcinside.com' + ref
+
         time.sleep(1)
         try:
             req2 = requests.get(ref, headers = headers)
@@ -49,30 +46,34 @@ def get_links(gall):
         soup2 = bs(post, 'html.parser')
         #fp.write(soup2.select('.writing_view_box')[0].text)
         data.append(soup2.select('h1')[0].text)
-        data.append(soup2.select('#powerbbsContent')[0].text)
+        data.append(soup2.select('#imageCollectDiv')[0].text)
         
     fp.write(' '. join(data))
     print("Writing Success")
+
         
 #    return data
                            
     
 
 if __name__=='__main__':
-    gallery = 'http://www.inven.co.kr/board/hs/3509'
-    pages = range(1, 1701)
+    gallery = 'http://www.inven.co.kr/webzine/news/?site=hs'
+    pages = [8, 11, 10, 14, 10, 18, 15, 18, 13]
     galleries = []
-    result = []
+    premonth = range(1,10)
     print("start crawling " + gallery + "...")
-    for page in pages:
-        gall = gallery
-        galleries.append(gall+'?sort=PID&p='+str(page))
+    for i in premonth:
+        for page in pages:
+            val = range(1, page)
+            for i in val:
+                galleries.append(gallery+'&page='+str(page)+"&premonth="+str(i))
+                
 
-    for link in galleries:
-        get_links(link)
+    #for link in galleries:
+    #    get_links(link)
 
-    #pool = Pool(processes = 4)
-    #result = pool.map(get_links, galleries)
+    pool = Pool(processes = 2)
+    result = pool.map(get_links, galleries)
 
     fp.close()             
     print('=== Time : %s sec ===' %(time.time() - start_time))
