@@ -1,8 +1,6 @@
 from soynlp.utils import DoublespaceLineCorpus
 from soynlp.tokenizer import LTokenizer
 from soynlp.noun import LRNounExtractor_v2
-from soynlp.vectorizer import *
-from soynlp.normalizer import *
 from soykeyword.lasso import LassoKeywordExtractor
 import time
 from scipy.sparse import csr_matrix
@@ -43,11 +41,6 @@ while True:
 fp.close()
 text = str(text)
 
-'''
-text = only_hangle_number(text)
-text = emoticon_normalize(text, num_repeats=3)
-text = repeat_normalize(text, num_repeats=3)
-'''
 noun_extractor = LRNounExtractor_v2(verbose=True, extract_compound=True)
 nouns = noun_extractor.train_extract(sents)
 nounScore = {}
@@ -66,19 +59,7 @@ nounData = list(dictionary.keys())
 tokenizer = LTokenizer(scores=nounScore)
 tokenized_text = tokenizer.tokenize(text)
 
-'''
-vectorizer = BaseVectorizer(
-    tokenizer=tokenizer,
-    min_tf=0,
-    max_tf=10000,
-    min_df=0,
-    max_df=1.0,
-    stopords=None,
-    lowercase=True,
-    verbose=True
-)
-'''
-vector_path = "./vectorizedHSInvwenNews.mtx"
+vector_path = "./vectorizedHSInvenNews.mtx"
 vec = my_read(vector_path)
 
 lassobased_extractor = LassoKeywordExtractor(min_tf=1, min_df=1)

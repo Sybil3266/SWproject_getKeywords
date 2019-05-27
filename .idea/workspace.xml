@@ -34,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/usingVector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="84" column="47" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="47" />
+            <state relative-caret-position="336">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -105,7 +105,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.textTokenizer">
+  <component name="RunManager" selected="Python.usingVector">
     <configuration name="textTokenizer" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SWproject_getKeywords" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -150,8 +150,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.textTokenizer" />
         <item itemvalue="Python.usingVector" />
+        <item itemvalue="Python.textTokenizer" />
       </list>
     </recent_temporary>
   </component>
@@ -186,7 +186,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286334" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3286334" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -194,7 +194,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3286334" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286334" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.31344903" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.31344903" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -260,8 +260,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/usingVector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="84" column="47" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="47" />
+        <state relative-caret-position="336">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
