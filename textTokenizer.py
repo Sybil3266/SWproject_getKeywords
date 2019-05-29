@@ -13,9 +13,9 @@ from soykeyword.lasso import LassoKeywordExtractor
 
 start_time = time.time()
 
-fp = open("C:\\Users\sybil\OneDrive\Documents\GitHub\SWproject_getKeywords\hsinvennews.txt", "r", encoding="utf-8")
+fp = open("C:\\Users\sybil\OneDrive\Documents\GitHub\SWproject_getKeywords\CrawlingData_pebble.txt", "r", encoding="utf-8")
 
-corpus_path = "C:\\Users\sybil\OneDrive\Documents\GitHub\SWproject_getKeywords\hsinvennews.txt"
+corpus_path = "C:\\Users\sybil\OneDrive\Documents\GitHub\SWproject_getKeywords\CrawlingData_pebble.txt"
 sents = DoublespaceLineCorpus(corpus_path, iter_sent=True)
 
 text = []
@@ -57,6 +57,7 @@ writefp.close()
 tokenizer = LTokenizer(scores = nounScore)
 tokenized_text = tokenizer.tokenize(text)
 
+
 vectorizer = BaseVectorizer(
     tokenizer=tokenizer,
     min_tf=0,
@@ -73,7 +74,7 @@ sents.iter_sent = False
 import tensorflow as tf
 
 
-vectorPath = "./vectorizedHSInvenNews.txt"
+vectorPath = "./vectorizedPebble.mtx"
 with tf.device('/gpu:0'):
     vectorizer.fit_to_file(sents, vectorPath)
     
